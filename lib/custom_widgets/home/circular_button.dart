@@ -9,14 +9,10 @@ class CircularButton extends StatelessWidget {
   final double deg;
   const CircularButton({this.icon, this.label,this.onPressed,required this.deg});
 
-
-
   double getRadiansFromDeg(double deg){
     double unitRadian = 57.2958;
     return deg/unitRadian;
   }
-
-
 
   @override
   Widget build(BuildContext context) {

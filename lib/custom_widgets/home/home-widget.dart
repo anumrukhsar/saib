@@ -137,9 +137,8 @@ class HomeWidget extends StatelessWidget {
                ],
              ),
             Container(padding:EdgeInsets.symmetric(vertical: 30.0),child: Image.network('https://assets.compareit4me.com/uploads/ksa/5c4ea0ffd7562738bbd3a4e2/en/saib%20visa%20signature.png'))
-           ],
-         ))
-      ]),
-    ));
+
+      ])),
+    ])));
   }
 }
