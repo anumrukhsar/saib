@@ -28,31 +28,35 @@ class HomeScreenState extends State<HomeScreen> {
                       right: 0,
                       left: 0,
                       child:
-                      Stack(
-                          alignment: Alignment.center,
+                      Container(
+                        padding: EdgeInsets.only(top: 200),
+                        // color: Colors.green,
+                        child: Stack(
+                             alignment: Alignment.center,
                     children: [
-                      CircularButton(icon:Icon(
-                        Icons.transfer_within_a_station,
-                        size: 35.0,
-                      ),label: 'Text Transfer',onPressed:onCircularButtonPressed,deg: 180,),
-                      CircularButton(icon:Icon(
-                        Icons.money_off_sharp,
-                        size: 35.0,
-                      ),label: 'ATM Cash Withdrawl',onPressed: onCircularButtonPressed,deg:230,),
-                      CircularButton(icon:Icon(
-                        Icons.payment,
-                        size: 35.0,
-                      ),label: 'Pay',onPressed: onCircularButtonPressed,deg: 270,),
-                      CircularButton(icon:Icon(
-                        Icons.money,
-                        size: 35.0,
-                      ),label:'Cash In',onPressed: onCircularButtonPressed,deg:310),
-                      CircularButton(icon:Icon(
-                        Icons.mobile_screen_share,
-                        size: 35.0,
-                      ),label: 'Mobile Transfer',onPressed: onCircularButtonPressed,deg:360),
+                        CircularButton(icon:Icon(
+                          Icons.transfer_within_a_station,
+                          size: 35.0,
+                        ),label: 'Text Transfer',onPressed:()=>onCircularButtonPressed(),deg: 180,),
+                        CircularButton(icon:Icon(
+                          Icons.money_off_sharp,
+                          size: 35.0,
+                        ),label: 'ATM Cash Withdrawl',onPressed: ()=>onCircularButtonPressed(),deg:230,),
+                        CircularButton(icon:Icon(
+                          Icons.payment,
+                          size: 35.0,
+                        ),label: 'Pay',onPressed: ()=>onCircularButtonPressed(),deg: 270,),
+                        CircularButton(icon:Icon(
+                          Icons.money,
+                          size: 35.0,
+                        ),label:'Cash In',onPressed: ()=>onCircularButtonPressed(),deg:310),
+                        CircularButton(icon:Icon(
+                          Icons.mobile_screen_share,
+                          size: 35.0,
+                        ),label: 'Mobile Transfer',onPressed: ()=>onCircularButtonPressed(),deg:360),
                     ],
-                  ))
+                  ),
+                      ))
                 ],
               )
 

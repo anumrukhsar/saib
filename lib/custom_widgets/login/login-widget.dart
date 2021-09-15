@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'custom_text_input_field.dart';
+
 class LoginWidget extends StatelessWidget {
+  var phoneNum;
+  var password;
   @override
   Widget build(BuildContext context) {
     return
@@ -34,93 +38,15 @@ class LoginWidget extends StatelessWidget {
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 50,
+                          height: 30,
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter Mobile Number',
-                            labelText: 'Mobile Number',
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF2B414D)),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF2B414D)),
-                            ),
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Colors.yellow.shade600,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14),
-                            ),
-                            hintStyle: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Color(0xFF2B414D),
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 14),
-                            ),
-                            prefixIcon: Container(height:28,margin: EdgeInsets.only(top: 25),child: Text('+966  | ')),
-                            // prefixIcon:
-                            //     Container(
-                            //
-                            //       decoration: BoxDecoration(
-                            //           border: Border(
-                            //             right: BorderSide(
-                            //               width: 1,color: Colors.black45,
-                            //             ),
-                            //           )
-                            //       ),
-                            //       child:
-                            //       TextField(
-                            //         decoration: InputDecoration(
-                            //           hintText: '+966',
-                            //           hintStyle: GoogleFonts.montserrat(
-                            //             textStyle: TextStyle(
-                            //                 color:Colors.black45,
-                            //             ),
-                            //
-                            //
-                            //           ),
-                            //           border:InputBorder.none
-                            //
-                            //         ),
-                            //
-                            //       ),
-                            //     ),
-                            // prefixIconConstraints: BoxConstraints(maxHeight: 20,maxWidth: 50)
-                          ),
-                          keyboardType: TextInputType.phone,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter Password',
-                            labelText: 'Password',
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF2B414D)),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF2B414D)),
-                            ),
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Colors.yellow.shade600,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14),
-                            ),
-                            hintStyle: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Color(0xFF2B414D),
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 14),
-                            ),
-                          ),
-                          obscureText: true,
-                        ),
-                        resetPasswordRemMeWidget,
-                        SizedBox(height: 60,),
+                        CustomTextInputField(tag:1,label: 'Mobile Number',hint: 'Enter Mobile Number',getResult:getTextFieldVal,error:'',inputType:TextInputType.phone,inputAction:TextInputAction.next),
+                        CustomTextInputField(tag:2,label: 'Password',hint: 'Enter Password',getResult:getTextFieldVal,error:'',inputType:TextInputType.visiblePassword,inputAction:TextInputAction.done),
+
+                        resetPasswordRemMeWidget(),
+                        SizedBox(height: 30,),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 40.0),
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
                           height: 50,
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(onPressed: (){onLogin(context);}, child: Text('LOGIN',style: GoogleFonts.montserrat(
@@ -146,7 +72,8 @@ class LoginWidget extends StatelessWidget {
             ],
           ));
   }
-  Widget resetPasswordRemMeWidget=Padding(
+  Widget resetPasswordRemMeWidget(){
+    return Padding(
     padding: const EdgeInsets.symmetric(vertical: 20.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,8 +117,19 @@ class LoginWidget extends StatelessWidget {
         )
       ],
     ),
-  );
+  );}
   void onLogin(BuildContext context){
     Navigator.pushNamed(context, '/home');
+  }
+
+  void getTextFieldVal(int key,String result){
+    switch(key){
+      case 1:
+        phoneNum=result;
+        break;
+      case 2:
+        password=result;
+        break;
+    }
   }
 }
