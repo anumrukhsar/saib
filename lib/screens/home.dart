@@ -86,7 +86,7 @@ class HomeScreenState extends State<HomeScreen> {
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.power_settings_new),
+                child: IconButton(onPressed:()=>{},icon:Icon(Icons.power_settings_new)),
               ),
             ],
           ),

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextInputField extends StatefulWidget {
   final tag;
   final label;
   final hint;
- final Function(int,String) getResult;
+  final Function(int, String) getResult;
   final error;
   final inputType;
   final inputAction;
@@ -15,7 +16,7 @@ class CustomTextInputField extends StatefulWidget {
     required this.tag,
     required this.label,
     required this.hint,
-     required this.getResult,
+    required this.getResult,
     required this.error,
     required this.inputType,
     required this.inputAction,
@@ -44,7 +45,6 @@ class CustomTextInputFieldState extends State<CustomTextInputField> {
   final inputAction;
   var textEditingController = TextEditingController();
 
-
   CustomTextInputFieldState({
     required this.tag,
     required this.label,
@@ -70,7 +70,9 @@ class CustomTextInputFieldState extends State<CustomTextInputField> {
                   fontSize: 14),
             ),
           ),
-         inputType==TextInputType.phone?buildPhoneInputTextField():buildBasicTextField(),
+          inputType == TextInputType.phone
+              ? buildPhoneInputTextField()
+              : buildBasicTextField(),
           SizedBox(
             height: 1,
             child: Container(
@@ -91,12 +93,10 @@ class CustomTextInputFieldState extends State<CustomTextInputField> {
     );
   }
 
+  Widget buildBasicTextField() {
+    getResult(tag, textEditingController.text);
 
-
-  Widget buildBasicTextField(){
-    getResult(tag,textEditingController.text);
-
-    return  TextFormField(
+    return TextFormField(
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hint,
@@ -108,21 +108,22 @@ class CustomTextInputFieldState extends State<CustomTextInputField> {
         ),
         border: InputBorder.none,
       ),
-
       keyboardType: inputType,
       textInputAction: inputAction,
-        obscureText:(tag==2),
-
+      obscureText: (tag == 2),
     );
   }
-  Widget buildPhoneInputTextField(){
-    var countryCodeEditingController = TextEditingController();
-    getResult(tag,countryCodeEditingController.text+textEditingController.text);
 
-    return
-      Row(
-        children: [
-        Expanded(flex:1,child:  TextFormField(
+  Widget buildPhoneInputTextField() {
+    var countryCodeEditingController = TextEditingController();
+    getResult(
+        tag, countryCodeEditingController.text + textEditingController.text);
+
+    return Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: TextFormField(
             controller: countryCodeEditingController,
             decoration: InputDecoration(
               hintText: '+966',
@@ -136,12 +137,18 @@ class CustomTextInputFieldState extends State<CustomTextInputField> {
             ),
             keyboardType: inputType,
             textInputAction: inputAction,
-          ),),
-    Container(width:1,height:14,color:Color(0xFF2B414D) ,),
-    Expanded(flex:6,child:
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: TextFormField(
+          ),
+        ),
+        Container(
+          width: 1,
+          height: 14,
+          color: Color(0xFF2B414D),
+        ),
+        Expanded(
+          flex: 6,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
               controller: textEditingController,
               decoration: InputDecoration(
                 hintText: hint,
@@ -156,11 +163,9 @@ class CustomTextInputFieldState extends State<CustomTextInputField> {
               keyboardType: inputType,
               textInputAction: inputAction,
             ),
-    ),),
-        ],
-      );
-
+          ),
+        ),
+      ],
+    );
   }
-
-
 }
